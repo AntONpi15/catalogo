@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PIÑUSNET – Catálogo de Laptops</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+  :root {
+    --azul-turquesa: #3b92b0;
+    --azul-real: #35649e;
+    --azul-marino: #294e7c;
+    --azul-noche: #273b75;
+    --fucsia: #9a336f;
+    --blanco: #ffffff;
+    --gris-claro: #e0e0e0;
+    --borde-claro: #3d5a70;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+  font-family: 'Poppins', sans-serif; /* ✅ Tipografía redonda y profesional */
+  background-color: var(--azul-marino);
+  color: var(--blanco);
+  line-height: 1.7;
+  font-size: 16px; /* ✅ Un poco más grande que el default (14-15px) */
+}
+
+  /* Botón de administración movible */
+  #admin-toggle {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background: var(--fucsia);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-weight: bold;
+    cursor: move;
+    z-index: 1000;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    user-select: none;
+  }
+
+  /* Panel de admin */
+  #admin-panel {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 90%;
+    max-width: 550px;
+    height: 100vh;
+    background: var(--blanco);
+    box-shadow: -4px 0 12px rgba(0,0,0,0.2);
+    z-index: 2000;
+    transition: right 0.3s ease;
+    padding: 20px;
+    overflow-y: auto;
+  }
+
+  #admin-panel.open {
+    right: 0;
+  }
+
+  .admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--borde-claro);
+  }
+
+  #close-admin {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--azul-marino);
+  }
+
+  .laptop-form {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed var(--borde-claro);
+  }
+
+  .laptop-form h4 {
+    color: var(--fucsia);
+    margin-bottom: 10px;
+  }
+
+  .laptop-form input,
+  .laptop-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid var(--borde-claro);
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--gris-claro);
+    color: var(--azul-marino);
+  }
+
+  .laptop-form textarea {
+    height: 80px;
+    resize: vertical;
+  }
+
+  #save-admin {
+    background-color: var(--fucsia);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  #save-admin:hover {
+    background-color: var(--azul-real);
+  }
+
+  /* Carrusel */
+  .carousel {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background-color: var(--azul-turquesa);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .carousel img {
+    width: auto;
+    max-width: 90%;
+    max-height: 150px;
+    object-fit: contain;
+  }
+
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .carousel-btn.prev {
+    left: 8px;
+  }
+
+  .carousel-btn.next {
+    right: 8px;
+  }
+
+  .carousel-btn:hover {
+    background: var(--fucsia);
+  }
+
+  /* Header y footer */
+  header {
+    background-color: var(--azul-marino);
+    color: var(--blanco);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+
+  .logo {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  .contacto-header {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .whatsapp-link {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .whatsapp-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .hero {
+    background-color: var(--azul-turquesa);
+    padding: 2.2rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid var(--borde-claro);
+  }
+
+  .hero h1 {
+    color: var(--azul-marino);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  main {
+    max-width: 1300px;
+    margin: 2.5rem auto;
+    padding: 0 1.8rem;
+  }
+
+  .empresa {
+    background-color: var(--azul-turquesa);
+    padding: 1.8rem;
+    border-radius: 8px;
+    margin-bottom: 2.8rem;
+    border-left: 4px solid var(--fucsia);
+  }
+
+  .empresa h2 {
+    color: var(--azul-marino);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .catalogo {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 1.8rem;
+  }
+
+  .laptop {
+    background: var(--blanco);
+    border: 1px solid var(--borde-claro);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.25s ease;
+  }
+
+  .laptop:hover {
+    box-shadow: 0 6px 16px rgba(154, 51, 111, 0.2);
+  }
+
+  .laptop-content {
+    padding: 1.3rem;
+  }
+
+  .laptop h3 {
+    font-size: 1.25rem;
+    color: var(--azul-marino);
+    margin-bottom: 0.7rem;
+  }
+
+  .specs {
+    font-size: 0.92rem;
+    color: var(--azul-real);
+    margin: 0.8rem 0;
+    line-height: 1.5;
+  }
+
+  .precio {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--fucsia);
+    margin: 0.9rem 0;
+  }
+
+  .btn-comprar {
+    display: inline-block;
+    background-color: var(--fucsia);
+    color: white;
+    text-decoration: none;
+    padding: 0.65rem 1.4rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background-color 0.2s;
+  }
+
+  .btn-comprar:hover {
+    background-color: var(--azul-real);
+    color: var(--blanco);
+  }
+
+  footer {
+    background-color: var(--azul-noche);
+    color: var(--blanco);
+    text-align: center;
+    padding: 1.8rem;
+    margin-top: 3rem;
+    border-top: 1px solid var(--borde-claro);
+  }
+
+  footer .whatsapp-link {
+    color: var(--fucsia);
+  }
+
+  /* Login modal */
+  #login-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(39, 59, 117, 0.7);
+    z-index: 3000;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .login-box {
+    background: var(--blanco);
+    padding: 25px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 350px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+
+  .login-box h3 {
+    margin-bottom: 15px;
+    color: var(--fucsia);
+    text-align: center;
+  }
+
+  .login-box input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--borde-claro);
+    border-radius: 4px;
+    background-color: var(--gris-claro);
+    color: var(--azul-marino);
+  }
+
+  .login-box button {
+    width: 100%;
+    padding: 10px;
+    background: var(--fucsia);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .login-box #cancel-login {
+    background: var(--azul-noche);
+    margin-top: 8px;
+  }
+
+  .login-box #cancel-login:hover {
+    background: var(--azul-real);
+  }
+
+  @media (max-width: 600px) {
+    .catalogo {
+      grid-template-columns: 1fr;
+    }
+    .carousel {
+      height: 160px;
+    }
+    .contacto-header {
+      gap: 0.8rem;
+    }
+  }
+
+
+</style>
+
+</head>
+<body>
+
+  <!-- Botón de admin (solo si no es cliente) -->
+  <script>
+    if (!window.location.search.includes('cliente')) {
+      document.write('<button id="admin-toggle">🛠️</button>');
+    }
+  </script>
+
+  <header>
+    <div class="logo">PIÑUSNET</div>
+    <div class="contacto-header" id="contacto-header">
+      <!-- Se llena con JS -->
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>Catálogo de Laptops</h1>
+    <p>Laptops potentes para carreras universitarias o campo laboral.</p>
+  </section>
+
+  <main>
+    <section class="empresa">
+      <h2>Te ofrecemos:</h2>
+      <p>Laptops de alto rendimiento con garantía y soporte técnico incluido.</p>
+    </section>
+
+   <section class="seccion-negra">
+  <h2>Laptops Potentes</h2>
+  <div id="catalogo" class="catalogo"></div>
+</section>
+  </main>
+
+  <footer id="footer">
+    <!-- Se llena con JS -->
+  </footer>
+
+  <!-- Modal de login -->
+  <div id="login-modal">
+    <div class="login-box">
+      <h3>Acceso de Administrador</h3>
+      <input type="password" id="login-password" placeholder="Contraseña">
+      <button id="login-btn">Ingresar</button>
+      <button id="cancel-login">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- Panel de administración -->
+  <div id="admin-panel">
+    <div class="admin-header">
+      <h3>Configuración del Catálogo</h3>
+      <button id="close-admin">&times;</button>
+    </div>
+    <div>
+      <h4>Número de WhatsApp</h4>
+      <input type="text" id="global-whatsapp" placeholder="Ej: 593984352084" value="593984352084">
+      <p style="font-size:0.85rem;color:var(--gris-secundario);margin:5px 0;">(Solo el número, sin + ni espacios)</p>
+    </div>
+    <div id="admin-forms"></div>
+    <button id="save-admin">Guardar Cambios</button>
+  </div>
+
+  <!-- SVG del logo de WhatsApp -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
+    <symbol id="whatsapp-icon" viewBox="0 0 24 24">
+      <path fill="#fff" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.247-.595-.497-1.016-.67-1.016-.174 0-.3-.024-.425.024-.124.05-.297.198-.446.347-.149.149-2.799 2.722-2.799 6.58 0 3.858 2.815 6.673 3.013 6.872.199.198 2.748 2.722 6.606 2.722 2.53 0 4.248-1.19 4.843-1.685.595-.495.968-1.48 1.017-1.704.05-.224-.025-.423-.174-.571-.149-.15-.297-.174-.496-.273z"/>
+      <path fill="#fff" d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.66 14.613c-.275.666-.982 1.29-1.779 1.29-1.242 0-1.979-.895-2.679-1.595-.7-.7-1.405-1.44-1.405-2.683 0-.796.625-1.503 1.29-1.778.27-.115.568-.025.77.176.203.202.503.685.572.824.07.14.035.257-.033.396-.069.139-.28.39-.333.458-.054.069-.11.14-.203.234-.092.092-.057.154.01.256.068.103.296.478.365.565.069.089.137.107.256.054.12-.053 1.098-.498 1.616-.644.518-.146.897-.174 1.244.21.347.385.347 1.313.347 1.313l.003.103z"/>
+    </symbol>
+  </svg>
+
+  <script>
+    // === CONFIGURACIÓN ===
+    const ADMIN_PASSWORD = 'admin123';
+    let isAdminAuthenticated = false;
+
+    // === Cargar configuración y laptops ===
+    let config = JSON.parse(localStorage.getItem('catalogo-config')) || {
+      whatsappNumber: '593984352084'
+    };
+
+    const defaultLaptops = Array.from({length: 10}, (_, i) => ({
+      name: `Laptop Modelo ${i + 1}`,
+      specs: `• Procesador Intel i7\n• 16 GB RAM\n• SSD 512 GB\n• Pantalla 14" FHD`,
+      price: '2,499,000',
+      images: [`img/laptop${i + 1}/1.jpg`, `img/laptop${i + 1}/2.jpg`]
+    }));
+
+    let laptops = JSON.parse(localStorage.getItem('laptops')) || defaultLaptops;
+
+    // === Función para crear enlace de WhatsApp (SIN ESPACIOS) ===
+    function whatsappLink(number, text = '') {
+  // Eliminar cualquier carácter que no sea dígito
+  const cleanNumber = (number || '').toString().replace(/\D/g, '');
+  if (!cleanNumber) return 'https://wa.me/';
+  
+  let url = `https://wa.me/${cleanNumber}`;
+  if (text) {
+    url += `?text=${encodeURIComponent(text)}`;
+  }
+  return url;
+}
+
+    // === Renderizar header y footer ===
+    function renderHeaderFooter() {
+      const num = config.whatsappNumber;
+      const formattedPhone = num.replace(/^(\d{3})(\d{2})(\d{3})(\d{4})$/, '+$1 $2 $3 $4');
+      const telLink = `tel:+${num}`;
+      const chatLink = whatsappLink(num, 'Hola, estoy interesado en una laptop. Ayúdame.');
+
+      document.getElementById('contacto-header').innerHTML = `
+        <a href="${telLink}" style="color:white;text-decoration:none;font-weight:600;">📞 ${formattedPhone}</a>
+        <a href="${chatLink}" class="whatsapp-link">
+          <svg class="whatsapp-icon"><use xlink:href="#whatsapp-icon"/></svg>
+          WhatsApp
+        </a>
+      `;
+
+      document.getElementById('footer').innerHTML = `
+        <p>© 2025 PIÑUSNET. Todos los derechos reservados.</p>
+        <p>Contáctanos vía 
+          <a href="${chatLink}" class="whatsapp-link">
+            <svg class="whatsapp-icon"><use xlink:href="#whatsapp-icon"/></svg>
+            WhatsApp
+          </a>
+        </p>
+      `;
+    }
+
+    // === Renderizar catálogo ===
+    function renderCatalog() {
+      const container = document.getElementById('catalogo');
+      container.innerHTML = '';
+
+      laptops.forEach((lap, i) => {
+        const encodedName = encodeURIComponent(lap.name);
+        const waLink = whatsappLink(config.whatsappNumber, `Hola, quiero solicitar información sobre la ${encodedName}`);
+        const el = document.createElement('div');
+        el.className = 'laptop';
+
+        let carouselHTML = `<div class="carousel" id="carousel-${i}">`;
+        if (lap.images && lap.images.length > 0) {
+          carouselHTML += `<img src="${lap.images[0]}" id="img-${i}">`;
+          if (lap.images.length > 1) {
+            carouselHTML += `
+              <button class="carousel-btn prev" onclick="changeImage(${i}, -1)">‹</button>
+              <button class="carousel-btn next" onclick="changeImage(${i}, 1)">›</button>
+            `;
+          }
+        } else {
+          carouselHTML += `<div>Sin imagen</div>`;
+        }
+        carouselHTML += `</div>`;
+
+        el.innerHTML = `
+          ${carouselHTML}
+          <div class="laptop-content">
+            <h3>${lap.name || 'Sin nombre'}</h3>
+            <div class="specs">${(lap.specs || '').replace(/\n/g, '<br>')}</div>
+            <div class="precio">$${lap.price || '0'}</div>
+            <a href="${waLink}" class="btn-comprar">Consultar</a>
+          </div>
+        `;
+        container.appendChild(el);
+      });
+    }
+
+    window.changeImage = function(index, direction) {
+      const lap = laptops[index];
+      if (!lap.images || lap.images.length <= 1) return;
+      let current = lap.currentImage || 0;
+      current = (current + direction + lap.images.length) % lap.images.length;
+      lap.currentImage = current;
+      document.getElementById(`img-${index}`).src = lap.images[current];
+    };
+
+    // === Renderizar formulario de admin con botón de salir ===
+    function renderAdminForm() {
+      const formContainer = document.getElementById('admin-forms');
+      formContainer.innerHTML = `
+        <button id="logout-admin" style="background:#e53e3e;color:white;border:none;padding:6px 12px;border-radius:4px;margin-bottom:15px;cursor:pointer;">
+          🚪 Salir de Admin
+        </button>
+      `;
+
+      laptops.forEach((lap, i) => {
+        const imgList = lap.images ? lap.images.join('\n') : 'img/laptop1/1.jpg\nimg/laptop1/2.jpg';
+        const form = document.createElement('div');
+        form.className = 'laptop-form';
+        form.innerHTML = `
+          <h4>Laptop ${i + 1}</h4>
+          <input type="text" id="name-${i}" value="${lap.name}" placeholder="Nombre">
+          <textarea id="images-${i}" placeholder="Rutas de imágenes (una por línea)">${imgList}</textarea>
+          <textarea id="specs-${i}" placeholder="Características">${lap.specs || ''}</textarea>
+          <input type="text" id="price-${i}" value="${lap.price}" placeholder="Precio">
+        `;
+        formContainer.appendChild(form);
+      });
+
+      document.getElementById('global-whatsapp').value = config.whatsappNumber;
+
+      // Evento para salir de admin
+      document.getElementById('logout-admin').addEventListener('click', () => {
+        isAdminAuthenticated = false;
+        document.getElementById('admin-panel').classList.remove('open');
+      });
+    }
+
+    // === Guardar cambios ===
+    function saveAdminData() {
+      try {
+        config.whatsappNumber = document.getElementById('global-whatsapp').value.trim() || '593984352084';
+        localStorage.setItem('catalogo-config', JSON.stringify(config));
+
+        laptops = laptops.map((_, i) => {
+          const images = document.getElementById(`images-${i}`).value
+            .split('\n')
+            .map(s => s.trim())
+            .filter(s => s);
+          return {
+            name: document.getElementById(`name-${i}`).value || `Laptop ${i + 1}`,
+            images: images.length ? images : ['img/placeholder.jpg'],
+            specs: document.getElementById(`specs-${i}`).value || '',
+            price: document.getElementById(`price-${i}`).value || '0'
+          };
+        });
+        localStorage.setItem('laptops', JSON.stringify(laptops));
+
+        renderCatalog();
+        renderHeaderFooter();
+        document.getElementById('admin-panel').classList.remove('open');
+      } catch (e) {
+        alert('Error al guardar: ' + e.message);
+        console.error(e);
+      }
+    }
+
+    // === Inicializar ===
+    document.addEventListener('DOMContentLoaded', () => {
+      renderHeaderFooter();
+      renderCatalog();
+
+      const toggleBtn = document.getElementById('admin-toggle');
+      if (!toggleBtn) return;
+
+      let isDragging = false;
+      let offsetX, offsetY;
+
+      toggleBtn.addEventListener('click', (e) => {
+        if (!isDragging) {
+          if (isAdminAuthenticated) {
+            renderAdminForm();
+            document.getElementById('admin-panel').classList.add('open');
+          } else {
+            document.getElementById('login-modal').style.display = 'flex';
+          }
+        }
+      });
+
+      toggleBtn.addEventListener('mousedown', (e) => {
+        isDragging = false;
+        offsetX = e.clientX - toggleBtn.getBoundingClientRect().left;
+        offsetY = e.clientY - toggleBtn.getBoundingClientRect().top;
+        toggleBtn.style.cursor = 'grabbing';
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (e.buttons !== 1) return;
+        isDragging = true;
+        const x = e.clientX - offsetX;
+        const y = e.clientY - offsetY;
+        const maxX = window.innerWidth - toggleBtn.offsetWidth;
+        const maxY = window.innerHeight - toggleBtn.offsetHeight;
+        toggleBtn.style.left = Math.max(0, Math.min(x, maxX)) + 'px';
+        toggleBtn.style.top = Math.max(0, Math.min(y, maxY)) + 'px';
+        toggleBtn.style.right = 'auto';
+        toggleBtn.style.bottom = 'auto';
+      });
+
+      document.addEventListener('mouseup', () => {
+        toggleBtn.style.cursor = 'move';
+      });
+
+      // Login
+      document.getElementById('login-btn').addEventListener('click', () => {
+        const pass = document.getElementById('login-password').value;
+        if (pass === ADMIN_PASSWORD) {
+          isAdminAuthenticated = true;
+          document.getElementById('login-modal').style.display = 'none';
+          document.getElementById('login-password').value = '';
+          renderAdminForm();
+          document.getElementById('admin-panel').classList.add('open');
+        } else {
+          alert('Contraseña incorrecta');
+        }
+      });
+
+      // Cancelar login
+      document.getElementById('cancel-login').addEventListener('click', () => {
+        document.getElementById('login-modal').style.display = 'none';
+        document.getElementById('login-password').value = '';
+      });
+
+      // Cerrar panel
+      document.getElementById('close-admin').addEventListener('click', () => {
+        document.getElementById('admin-panel').classList.remove('open');
+      });
+
+      document.getElementById('save-admin').addEventListener('click', saveAdminData);
+    });
+  </script>
+</body>
+</html>
