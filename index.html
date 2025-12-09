@@ -15,6 +15,7 @@
     --blanco: #ffffff;
     --gris-claro: #e0e0e0;
     --borde-claro: #3d5a70;
+    --negro-fondo: #0f0f11;
   }
 
   * {
@@ -24,12 +25,34 @@
   }
 
   body {
-  font-family: 'Poppins', sans-serif; /* ✅ Tipografía redonda y profesional */
-  background-color: var(--azul-marino);
-  color: var(--blanco);
-  line-height: 1.7;
-  font-size: 16px; /* ✅ Un poco más grande que el default (14-15px) */
-}
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--azul-marino);
+    color: var(--blanco);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* Fondo negro en secciones específicas */
+  .empresa,
+  .seccion-negra {
+    background-color: var(--negro-fondo);
+    padding: 1.8rem;
+    border-radius: 12px;
+    margin-bottom: 2.8rem;
+    border-left: 4px solid var(--fucsia);
+  }
+
+  .empresa h2,
+  .seccion-negra h2 {
+    color: var(--fucsia);
+    margin-bottom: 1.2rem;
+    font-size: 1.6rem;
+    text-align: center;
+  }
+
+  .empresa p {
+    color: var(--gris-claro);
+  }
 
   /* Botón de administración movible */
   #admin-toggle {
@@ -95,6 +118,7 @@
   .laptop-form h4 {
     color: var(--fucsia);
     margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
   }
 
   .laptop-form input,
@@ -104,7 +128,7 @@
     margin-bottom: 10px;
     border: 1px solid var(--borde-claro);
     border-radius: 4px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     background-color: var(--gris-claro);
     color: var(--azul-marino);
   }
@@ -124,6 +148,7 @@
     cursor: pointer;
     width: 100%;
     margin-top: 10px;
+    font-family: 'Poppins', sans-serif;
   }
 
   #save-admin:hover {
@@ -166,13 +191,8 @@
     justify-content: center;
   }
 
-  .carousel-btn.prev {
-    left: 8px;
-  }
-
-  .carousel-btn.next {
-    right: 8px;
-  }
+  .carousel-btn.prev { left: 8px; }
+  .carousel-btn.next { right: 8px; }
 
   .carousel-btn:hover {
     background: var(--fucsia);
@@ -194,6 +214,7 @@
     font-size: 1.6rem;
     font-weight: 700;
     letter-spacing: -0.5px;
+    font-family: 'Poppins', sans-serif;
   }
 
   .contacto-header {
@@ -210,6 +231,7 @@
     color: white;
     text-decoration: none;
     font-weight: 600;
+    font-family: 'Poppins', sans-serif;
   }
 
   .whatsapp-icon {
@@ -229,26 +251,17 @@
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .hero p {
+    font-family: 'Poppins', sans-serif;
   }
 
   main {
     max-width: 1300px;
     margin: 2.5rem auto;
     padding: 0 1.8rem;
-  }
-
-  .empresa {
-    background-color: var(--azul-turquesa);
-    padding: 1.8rem;
-    border-radius: 8px;
-    margin-bottom: 2.8rem;
-    border-left: 4px solid var(--fucsia);
-  }
-
-  .empresa h2 {
-    color: var(--azul-marino);
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
   }
 
   .catalogo {
@@ -277,6 +290,7 @@
     font-size: 1.25rem;
     color: var(--azul-marino);
     margin-bottom: 0.7rem;
+    font-family: 'Poppins', sans-serif;
   }
 
   .specs {
@@ -284,6 +298,7 @@
     color: var(--azul-real);
     margin: 0.8rem 0;
     line-height: 1.5;
+    font-family: 'Poppins', sans-serif;
   }
 
   .precio {
@@ -291,6 +306,7 @@
     font-weight: 700;
     color: var(--fucsia);
     margin: 0.9rem 0;
+    font-family: 'Poppins', sans-serif;
   }
 
   .btn-comprar {
@@ -303,6 +319,7 @@
     font-weight: 600;
     font-size: 0.95rem;
     transition: background-color 0.2s;
+    font-family: 'Poppins', sans-serif;
   }
 
   .btn-comprar:hover {
@@ -321,6 +338,7 @@
 
   footer .whatsapp-link {
     color: var(--fucsia);
+    font-family: 'Poppins', sans-serif;
   }
 
   /* Login modal */
@@ -350,6 +368,7 @@
     margin-bottom: 15px;
     color: var(--fucsia);
     text-align: center;
+    font-family: 'Poppins', sans-serif;
   }
 
   .login-box input {
@@ -358,6 +377,7 @@
     margin-bottom: 15px;
     border: 1px solid var(--borde-claro);
     border-radius: 4px;
+    font-family: 'Poppins', sans-serif;
     background-color: var(--gris-claro);
     color: var(--azul-marino);
   }
@@ -370,6 +390,7 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-family: 'Poppins', sans-serif;
   }
 
   .login-box #cancel-login {
@@ -392,10 +413,7 @@
       gap: 0.8rem;
     }
   }
-
-
-</style>
-
+  </style>
 </head>
 <body>
 
@@ -424,10 +442,10 @@
       <p>Laptops de alto rendimiento con garantía y soporte técnico incluido.</p>
     </section>
 
-   <section class="seccion-negra">
-  <h2>Laptops Potentes</h2>
-  <div id="catalogo" class="catalogo"></div>
-</section>
+    <section class="seccion-negra">
+      <h2>Laptops Potentes</h2>
+      <div id="catalogo" class="catalogo"></div>
+    </section>
   </main>
 
   <footer id="footer">
@@ -453,7 +471,7 @@
     <div>
       <h4>Número de WhatsApp</h4>
       <input type="text" id="global-whatsapp" placeholder="Ej: 593984352084" value="593984352084">
-      <p style="font-size:0.85rem;color:var(--gris-secundario);margin:5px 0;">(Solo el número, sin + ni espacios)</p>
+      <p style="font-size:0.85rem;color:var(--gris-claro);margin:5px 0;">(Solo el número, sin + ni espacios)</p>
     </div>
     <div id="admin-forms"></div>
     <button id="save-admin">Guardar Cambios</button>
@@ -473,31 +491,47 @@
     let isAdminAuthenticated = false;
 
     // === Cargar configuración y laptops ===
-    let config = JSON.parse(localStorage.getItem('catalogo-config')) || {
-      whatsappNumber: '593984352084'
-    };
+    let config = { whatsappNumber: '593984352084' };
+    let laptops = [];
 
-    const defaultLaptops = Array.from({length: 10}, (_, i) => ({
-      name: `Laptop Modelo ${i + 1}`,
-      specs: `• Procesador Intel i7\n• 16 GB RAM\n• SSD 512 GB\n• Pantalla 14" FHD`,
-      price: '2,499,000',
-      images: [`img/laptop${i + 1}/1.jpg`, `img/laptop${i + 1}/2.jpg`]
-    }));
+    // === Función para cargar datos (desde data.json o por defecto) ===
+    async function loadData() {
+      try {
+        const response = await fetch('data.json?_=' + Date.now()); // Evita caché
+        if (response.ok) {
+          const data = await response.json();
+          config = data.config || { whatsappNumber: '593984352084' };
+          laptops = data.laptops || [];
+        } else {
+          // Usar datos por defecto
+          laptops = Array.from({length: 10}, (_, i) => ({
+            name: `Laptop Modelo ${i + 1}`,
+            specs: `• Procesador Intel i7\n• 16 GB RAM\n• SSD 512 GB\n• Pantalla 14" FHD`,
+            price: '2,499,000',
+            images: [`img/laptop${i + 1}/1.jpg`, `img/laptop${i + 1}/2.jpg`]
+          }));
+        }
+      } catch (e) {
+        console.warn('No se encontró data.json, usando valores por defecto.');
+        laptops = Array.from({length: 10}, (_, i) => ({
+          name: `Laptop Modelo ${i + 1}`,
+          specs: `• Procesador Intel i7\n• 16 GB RAM\n• SSD 512 GB\n• Pantalla 14" FHD`,
+          price: '2,499,000',
+          images: [`img/laptop${i + 1}/1.jpg`, `img/laptop${i + 1}/2.jpg`]
+        }));
+      }
+    }
 
-    let laptops = JSON.parse(localStorage.getItem('laptops')) || defaultLaptops;
-
-    // === Función para crear enlace de WhatsApp (SIN ESPACIOS) ===
+    // === Función para crear enlace de WhatsApp (CORREGIDA) ===
     function whatsappLink(number, text = '') {
-  // Eliminar cualquier carácter que no sea dígito
-  const cleanNumber = (number || '').toString().replace(/\D/g, '');
-  if (!cleanNumber) return 'https://wa.me/';
-  
-  let url = `https://wa.me/${cleanNumber}`;
-  if (text) {
-    url += `?text=${encodeURIComponent(text)}`;
-  }
-  return url;
-}
+      const cleanNumber = (number || '').toString().replace(/\D/g, '');
+      if (!cleanNumber) return 'https://wa.me/';
+      let url = `https://wa.me/${cleanNumber}`;
+      if (text) {
+        url += `?text=${encodeURIComponent(text)}`;
+      }
+      return url;
+    }
 
     // === Renderizar header y footer ===
     function renderHeaderFooter() {
@@ -572,12 +606,15 @@
       document.getElementById(`img-${index}`).src = lap.images[current];
     };
 
-    // === Renderizar formulario de admin con botón de salir ===
+    // === Renderizar formulario de admin con botón de salir y exportar ===
     function renderAdminForm() {
       const formContainer = document.getElementById('admin-forms');
       formContainer.innerHTML = `
         <button id="logout-admin" style="background:#e53e3e;color:white;border:none;padding:6px 12px;border-radius:4px;margin-bottom:15px;cursor:pointer;">
           🚪 Salir de Admin
+        </button>
+        <button id="export-json" style="background:#4d82bc;color:white;border:none;padding:6px 12px;border-radius:4px;margin-bottom:15px;cursor:pointer;">
+          💾 Exportar data.json
         </button>
       `;
 
@@ -602,13 +639,39 @@
         isAdminAuthenticated = false;
         document.getElementById('admin-panel').classList.remove('open');
       });
+
+      // Evento para exportar JSON
+      document.getElementById('export-json').addEventListener('click', () => {
+        const data = {
+          config: { whatsappNumber: document.getElementById('global-whatsapp').value.trim() || '593984352084' },
+          laptops: laptops.map((_, i) => ({
+            name: document.getElementById(`name-${i}`).value || `Laptop ${i + 1}`,
+            images: document.getElementById(`images-${i}`).value
+              .split('\n')
+              .map(s => s.trim())
+              .filter(s => s),
+            specs: document.getElementById(`specs-${i}`).value || '',
+            price: document.getElementById(`price-${i}`).value || '0'
+          }))
+        };
+
+        const jsonStr = JSON.stringify(data, null, 2);
+        const blob = new Blob([jsonStr], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'data.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
     }
 
-    // === Guardar cambios ===
+    // === Guardar cambios (en localStorage solo para vista local) ===
     function saveAdminData() {
       try {
         config.whatsappNumber = document.getElementById('global-whatsapp').value.trim() || '593984352084';
-        localStorage.setItem('catalogo-config', JSON.stringify(config));
 
         laptops = laptops.map((_, i) => {
           const images = document.getElementById(`images-${i}`).value
@@ -622,8 +685,8 @@
             price: document.getElementById(`price-${i}`).value || '0'
           };
         });
-        localStorage.setItem('laptops', JSON.stringify(laptops));
 
+        // Actualizar UI
         renderCatalog();
         renderHeaderFooter();
         document.getElementById('admin-panel').classList.remove('open');
@@ -634,7 +697,8 @@
     }
 
     // === Inicializar ===
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadData();
       renderHeaderFooter();
       renderCatalog();
 
