@@ -1,0 +1,97 @@
+{
+  "config": {
+    "whatsappNumber": "593984352084"
+  },
+  "laptops": [
+    {
+      "name": "Laptop Modelo 1",
+      "images": [
+        "img/laptop1/1.jpg",
+        "img/laptop1/2.jpg"
+      ],
+      "specs": "• Procesador Intel i7\n• 16 GB RAM\n• SSD 512 GB\n• Pantalla 14\" FHD",
+      "price": "2,499,000"
+    },
+    {
+      "name": "Laptop Modelo 2",
+      "images": [
+        "img/laptop2/1.jpg",
+        "img/laptop2/2.jpg"
+      ],
+      "specs": "• Procesador Intel i7\n• 16 GB RAM\n• SSD 512 GB\n• Pantalla 14\" FHD",
+      "price": "2,499,000"
+    },
+    {
+      "name": "Laptop Modelo 3",
+      "images": [
+        "img/laptop3/1.jpg",
+        "img/laptop3/2.jpg"
+      ],
+      "specs": "• Procesador Intel i7\n• 16 GB RAM\n• SSD 512 GB\n• Pantalla 14\" FHD",
+      "price": "2,499,000"
+    },
+    {
+      "name": "Laptop Modelo 4",
+      "images": [
+        "img/laptop4/1.jpg",
+        "img/laptop4/2.jpg"
+      ],
+      "specs": "• Procesador Intel i7\n• 16 GB RAM\n• SSD 512 GB\n• Pantalla 14\" FHD",
+      "price": "2,499,000"
+    },
+    {
+      "name": "Laptop Modelo 5",
+      "images": [
+        "img/laptop5/1.jpg",
+        "img/laptop5/2.jpg"
+      ],
+      "specs": "• Procesador Intel i7\n• 16 GB RAM\n• SSD 512 GB\n• Pantalla 14\" FHD",
+      "price": "2,499,000"
+    },
+    {
+      "name": "Laptop Modelo 6",
+      "images": [
+        "img/laptop6/1.jpg",
+        "img/laptop6/2.jpg"
+      ],
+      "specs": "• Procesador Intel i7\n• 16 GB RAM\n• SSD 512 GB\n• Pantalla 14\" FHD",
+      "price": "2,499,000"
+    },
+    {
+      "name": "Laptop Modelo 7",
+      "images": [
+        "img/laptop7/1.jpg",
+        "img/laptop7/2.jpg"
+      ],
+      "specs": "• Procesador Intel i7\n• 16 GB RAM\n• SSD 512 GB\n• Pantalla 14\" FHD",
+      "price": "2,499,000"
+    },
+    {
+      "name": "Laptop Modelo 8",
+      "images": [
+        "img/laptop8/1.jpg",
+        "img/laptop8/2.jpg"
+      ],
+      "specs": "• Procesador Intel i7\n• 16 GB RAM\n• SSD 512 GB\n• Pantalla 14\" FHD",
+      "price": "2,499,000"
+    },
+    {
+      "name": "Laptop Modelo 9",
+      "images": [
+        "img/laptop9/1.jpg",
+        "img/laptop9/2.jpg"
+      ],
+      "specs": "• Procesador Intel i7\n• 16 GB RAM\n• SSD 512 GB\n• Pantalla 14\" FHD",
+      "price": "2,499,000"
+    },
+    {
+      "name": "Laptop Modelo 10",
+      "images": [
+        "img/laptop10/1.jpg",
+        "img/laptop10/2.jpg"
+      ],
+      "specs": "• Procesador Intel i7\n• 16 GB RAM\n• SSD 512 GB\n• Pantalla 14\" FHD",
+      "price": "2,499,000"
+    }
+  ]
+}
